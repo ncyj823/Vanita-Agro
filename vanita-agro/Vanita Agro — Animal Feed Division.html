@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vanita Agro — Animal Feed Division</title>
+<style>
+:root{
+  --teal-900:#0a3f4a; --teal-700:#0d5866; --cream:#ffffff; --cream-soft:#f2ede4;
+  --ink:#132a2e; --amber:#d98a3d; --blue-tint:#e4eef1; --peach-tint:#f6e9de;
+  --pink-tint:#f3e3e8; --gray-tint:#eef0ee; --line:#dcd6ca;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:88px;}
+body{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.5;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+h1,h2,h3{font-weight:600;letter-spacing:-0.01em;}
+p,a,span,li,button{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+a{text-decoration:none;color:inherit;}
+button{font:inherit;border:none;background:none;cursor:pointer;color:inherit;}
+img,svg{display:block;max-width:100%;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.eyebrow{font-size:13px;color:var(--amber);font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);display:inline-block;flex-shrink:0;}
+:focus-visible{outline:2px solid var(--teal-700);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{transition:none !important;}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:60;padding:20px 0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(8px);}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;}
+.brand{display:flex;flex-direction:column;}
+.brand b{font-size:16px;color:var(--teal-900);}
+.brand small{font-size:9.5px;letter-spacing:.09em;color:#8a8175;}
+.navlinks{display:flex;gap:34px;font-size:14px;color:var(--ink);}
+.navlinks a{position:relative;padding-bottom:2px;}
+.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:var(--teal-700);transform:scaleX(0);transform-origin:left;transition:transform .18s ease;}
+.navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1);}
+.navlinks a.active{color:var(--teal-900);font-weight:600;}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.btn{background:var(--teal-900);color:#fff;padding:11px 20px;border-radius:8px;font-size:14px;display:inline-block;transition:background .18s ease, transform .18s ease;}
+.btn:hover{background:var(--teal-700);transform:translateY(-1px);}
+.hamburger{display:none;width:34px;height:34px;flex-direction:column;justify-content:center;align-items:center;gap:5px;}
+.hamburger span{width:20px;height:2px;background:var(--teal-900);transition:transform .2s ease, opacity .2s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-drawer{display:none;position:fixed;inset:69px 0 0 0;background:var(--cream);z-index:55;padding:28px 32px;flex-direction:column;gap:22px;font-size:16px;}
+.mobile-drawer.open{display:flex;}
+.mobile-drawer a{color:var(--teal-900);}
+
+/* HERO */
+.hero{padding:60px 0 0;}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+.hero h1{font-size:52px;line-height:1.08;color:var(--teal-900);}
+.hero h1 .accent{color:var(--teal-700);}
+.hero p.lead{margin-top:20px;font-size:16px;color:#544d43;max-width:36ch;}
+.hero .cta-row{margin-top:28px;}
+.hero .footnote{margin-top:44px;padding-left:14px;border-left:2px solid var(--amber);font-size:13px;color:#7a7267;}
+.hero-image{aspect-ratio:4/3.1;border-radius:16px;position:relative;overflow:hidden;box-shadow:0 20px 40px -20px rgba(10,63,74,.35);}
+.hero-image svg{width:100%;height:100%;}
+.hero-image .cap{position:absolute;left:22px;bottom:20px;right:22px;color:#fff;z-index:2;}
+.hero-image .cap .tag{font-size:10px;letter-spacing:.08em;opacity:.9;margin-bottom:6px;}
+.hero-image .cap .line{font-size:19px;font-weight:600;font-family:Georgia,serif;}
+.species-bar{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;}
+.species-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.species-bar .label{font-size:12px;letter-spacing:.06em;color:#8a8175;}
+.species-list{display:flex;gap:6px;flex-wrap:wrap;}
+.species-list button{font-size:14px;color:#8a8175;padding:7px 14px;border-radius:20px;transition:background .18s ease,color .18s ease;}
+.species-list button:hover{color:var(--teal-900);}
+.species-list button.active{color:#fff;background:var(--teal-900);}
+.filter-hint{font-size:11px;color:#a39a8c;font-style:italic;}
+
+section{padding:80px 0;}
+.section-head{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;margin-bottom:44px;}
+.section-head h2{font-size:34px;color:var(--teal-900);line-height:1.15;}
+.section-head p{font-size:15px;color:#544d43;max-width:42ch;}
+
+.tri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tri-card{border-radius:14px;padding:28px;transition:transform .18s ease, box-shadow .18s ease;display:block;text-align:left;width:100%;}
+.tri-card:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(10,63,74,.3);}
+.tri-card:nth-child(1){background:var(--blue-tint);}
+.tri-card:nth-child(2){background:var(--peach-tint);}
+.tri-card:nth-child(3){background:var(--gray-tint);}
+.tri-card .num{font-size:12px;color:#8a8175;margin-bottom:14px;font-variant-numeric:tabular-nums;}
+.tri-card h3{font-family:Georgia,serif;font-size:19px;color:var(--teal-900);margin-bottom:6px;}
+.tri-card p{font-size:14px;color:#544d43;margin-bottom:18px;}
+.tri-card .link{font-size:14px;color:var(--teal-900);font-weight:600;}
+
+.mineral-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px;}
+.mineral-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff;transition:opacity .25s ease, transform .25s ease, box-shadow .18s ease;cursor:pointer;}
+.mineral-card:hover{box-shadow:0 14px 26px -18px rgba(10,63,74,.28);}
+.mineral-card.dim{opacity:.32;transform:scale(.98);}
+.el-tile{width:56px;height:56px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:16px;font-family:Georgia,serif;}
+.el-tile b{font-size:22px;line-height:1;}
+.el-tile small{font-size:8px;letter-spacing:.05em;margin-top:2px;}
+.mineral-card:nth-child(1) .el-tile{background:var(--blue-tint);color:#2a5566;}
+.mineral-card:nth-child(2) .el-tile{background:var(--peach-tint);color:#8a5223;}
+.mineral-card:nth-child(3) .el-tile{background:var(--pink-tint);color:#7a3d52;}
+.mineral-card:nth-child(4) .el-tile{background:var(--gray-tint);color:#4a5248;}
+.mineral-card h4{font-family:Georgia,serif;font-size:16px;margin-bottom:6px;color:var(--teal-900);}
+.mineral-card p{font-size:13px;color:#544d43;margin-bottom:14px;}
+.mineral-card .tags{font-size:11px;color:#8a8175;}
+.mineral-card .tags span::after{content:"·";margin:0 6px;color:#c7c0b3;}
+.mineral-card .tags span:last-child::after{content:"";}
+.mineral-card .detail{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:12px;color:#7a7267;}
+.mineral-card.expanded .detail{max-height:60px;margin-top:10px;}
+.foot-note{font-size:12px;color:#8a8175;margin-top:16px;}
+
+.band{background:var(--teal-900);color:#fff;}
+.band-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.band h2{font-size:32px;color:#fff;}
+.band p{font-size:15px;color:#cfe3e6;margin-top:16px;max-width:38ch;}
+.formula{display:flex;gap:10px;margin-top:26px;font-size:13px;flex-wrap:wrap;}
+.formula span{border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:20px;transition:background .5s ease;}
+.formula span.pulse{background:rgba(255,255,255,.22);}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
+.stat{background:var(--teal-900);padding:26px;}
+.stat b{font-family:Georgia,serif;font-size:30px;display:block;}
+.stat span{font-size:12px;color:#cfe3e6;}
+
+.num-list{display:flex;flex-direction:column;gap:0;}
+.num-item{border-bottom:1px solid var(--line);}
+.num-item:first-child{border-top:1px solid var(--line);}
+.num-item .row-btn{display:flex;gap:16px;align-items:center;width:100%;padding:16px 0;text-align:left;}
+.num-item .n{width:26px;height:26px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a8175;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.num-item h4{font-family:Georgia,serif;font-size:15px;color:var(--teal-900);flex:1;}
+.num-item .chev{color:#a39a8c;transition:transform .2s ease;}
+.num-item.open .chev{transform:rotate(180deg);}
+.num-item .detail{max-height:0;overflow:hidden;transition:max-height .25s ease;padding-left:42px;}
+.num-item.open .detail{max-height:80px;padding-bottom:16px;}
+.num-item p{font-size:13px;color:#544d43;}
+.contact-note{font-size:13px;color:#8a8175;margin-top:26px;}
+
+.premix-section{background:var(--cream-soft);}
+.premix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.premix-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);transition:box-shadow .18s ease, opacity .25s ease, transform .25s ease;}
+.premix-card:hover{box-shadow:0 16px 30px -18px rgba(10,63,74,.3);}
+.premix-card.dim{opacity:.32;transform:scale(.98);}
+.premix-photo{aspect-ratio:4/3;position:relative;overflow:hidden;}
+.premix-photo svg{width:100%;height:100%;}
+.premix-body{padding:20px;}
+.premix-tag{display:inline-block;font-size:10px;letter-spacing:.05em;color:var(--teal-700);background:var(--blue-tint);padding:4px 10px;border-radius:20px;margin-bottom:12px;}
+.premix-body h4{font-family:Georgia,serif;font-size:17px;color:var(--teal-900);margin-bottom:6px;}
+.premix-body p{font-size:13px;color:#544d43;margin-bottom:16px;}
+.data-row{display:flex;gap:22px;border-top:1px solid var(--line);padding-top:12px;flex-wrap:wrap;}
+.data-row div{font-size:11px;color:#8a8175;}
+.data-row b{display:block;font-family:Georgia,serif;font-size:14px;color:var(--teal-900);}
+.more-ways{display:flex;justify-content:space-between;align-items:center;margin-top:36px;flex-wrap:wrap;gap:16px;}
+.more-ways .l1{font-size:11px;letter-spacing:.05em;color:var(--amber);margin-bottom:6px;}
+.more-ways h4{font-family:Georgia,serif;font-size:18px;color:var(--teal-900);margin-bottom:6px;}
+.more-ways .sub{font-size:13px;color:#8a8175;}
+.more-ways .links{display:flex;gap:26px;font-size:13px;color:var(--teal-900);font-weight:600;flex-wrap:wrap;}
+
+.quality-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;}
+.quality-photo{aspect-ratio:4/3.4;border-radius:14px;position:relative;overflow:hidden;box-shadow:0 20px 40px -22px rgba(10,63,74,.35);}
+.quality-photo svg{width:100%;height:100%;}
+.quality-photo .cap{position:absolute;left:18px;bottom:16px;color:#fff;font-size:11px;letter-spacing:.05em;z-index:2;}
+
+.contact{background:var(--cream-soft);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.contact h2{font-size:32px;color:var(--teal-900);}
+.contact p{font-size:15px;color:#544d43;margin-top:14px;max-width:36ch;}
+.contact-actions{background:var(--teal-900);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;}
+.contact-actions .row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:8px;font-size:14px;transition:opacity .18s ease;width:100%;}
+.contact-actions .row:hover{opacity:.9;}
+.contact-actions .row.primary{background:#fff;color:var(--teal-900);font-weight:600;}
+.contact-actions .row.ghost{border:1px solid rgba(255,255,255,.3);color:#fff;}
+.contact-actions .row.disabled{cursor:not-allowed;opacity:.6;}
+.contact-actions .soon{font-size:11px;color:#cfe3e6;}
+
+footer{border-top:1px solid var(--line);padding:36px 0;}
+footer .wrap{display:flex;justify-content:space-between;align-items:flex-start;font-size:13px;color:#8a8175;flex-wrap:wrap;gap:20px;}
+footer .addr{line-height:1.6;}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--teal-900);color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-family:-apple-system,sans-serif;opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:100;box-shadow:0 12px 24px -10px rgba(0,0,0,.4);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+
+@media (max-width:900px){
+  .hero-grid,.section-head,.band-grid,.quality-grid,.contact-grid{grid-template-columns:1fr;gap:28px;}
+  .tri-grid,.mineral-grid,.premix-grid{grid-template-columns:1fr;}
+  .navlinks{display:none;}
+  .hamburger{display:flex;}
+  .hero h1{font-size:38px;}
+  section{padding:52px 0;}
+  .species-bar .wrap{flex-direction:column;align-items:flex-start;}
+  footer .wrap{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">
+      <img src="logo.png" alt="Vanita Agro Logo" width="40" height="auto" />
+      <div class="brand"><b>Vanita Agro</b><small>ANIMAL FEED DIVISION</small></div>
+    </div>
+    <div class="navlinks" id="navlinks"><a href="#products">Our products</a><a href="#science">Our science</a><a href="#quality">Quality</a></div>
+    <div class="nav-right">
+      <a class="btn" href="#connect">Let's connect →</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#products">Our products</a><a href="#science">Our science</a><a href="#quality">Quality</a><a href="#connect">Let's connect</a>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Precision in every particle</div>
+      <h1>Small minerals.<br><span class="accent">Remarkable</span><br>possibilities.</h1>
+      <p class="lead">Organic minerals, inorganic minerals and premixes. Thoughtfully developed for better animal nutrition.</p>
+      <div class="cta-row"><a class="btn" href="#products">Explore our products →</a></div>
+      <div class="footnote">Rooted in science.<br>Spreading prosperity since 2003.</div>
+    </div>
+    <div class="hero-image">
+      <img src="hero.webp" alt="Vibrant farm landscape" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      <div class="cap"><div class="tag">THE SCIENCE OF NOURISHMENT</div><div class="line">Better nutrition begins at the molecular level.</div></div>
+    </div>
+  </div>
+  <div class="species-bar">
+    <div class="wrap">
+      <div class="label">NUTRITION ACROSS SPECIES</div>
+      <div class="species-list" id="speciesList">
+        <button class="active" data-species="all">All</button>
+        <button data-species="Poultry">Poultry</button>
+        <button data-species="Dairy">Dairy</button>
+        <button data-species="Aquaculture">Aquaculture</button>
+        <button data-species="Swine">Swine</button>
+      </div>
+      <div class="filter-hint" id="filterHint">Tap a species to filter minerals &amp; premixes below</div>
+    </div>
+  </div>
+</header>
+
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Our portfolio</div><h2>Three ranges. One commitment to quality.</h2></div>
+      <p>From individual trace minerals to combined formulations, explore the ingredients behind your next feed formulation.</p>
+    </div>
+    <div class="tri-grid">
+      <a class="tri-card" href="#organic"><div class="num">01</div><h3>Organic minerals</h3><p>Glycine-based trace mineral chelates</p><span class="link">Explore glycinates →</span></a>
+      <a class="tri-card" href="#inorganic"><div class="num">02</div><h3>Inorganic minerals</h3><p>Foundational trace mineral nutrition</p><span class="link">Explore the range →</span></a>
+      <a class="tri-card" href="#premixes"><div class="num">03</div><h3>Mineral premixes</h3><p>Combined nutrition, specific applications</p><span class="link">Explore premixes →</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="organic">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">01 / Organic minerals</div><h2>A stronger bond. A considered formulation.</h2></div>
+      <p>Our monoglycinates combine essential trace minerals with glycine in a 1:1 ratio. Micro-granulated and free-flowing for uniform feed mixing. Tap a card for a formulation note.</p>
+    </div>
+    <div class="mineral-grid" id="mineralGrid">
+      <div class="mineral-card" data-species="Poultry,Dairy,Aquaculture"><div class="el-tile"><b>Cu</b><small>COPPER · 29</small></div><h4>Copper Glycinate</h4><p>Supports iron metabolism, connective tissue and normal immune function.</p><div class="tags"><span>Poultry</span><span>Dairy</span><span>Aquaculture</span></div><div class="detail">26% Cu by weight (enhanced grade), micro-granulated.</div></div>
+      <div class="mineral-card" data-species="Poultry,Dairy,Aquaculture"><div class="el-tile"><b>Fe</b><small>IRON · 26</small></div><h4>Iron Glycinate</h4><p>Essential iron nutrition to support oxygen transport, growth and immune function.</p><div class="tags"><span>Poultry</span><span>Dairy</span><span>Aquaculture</span></div><div class="detail">21% Fe by weight, free-flowing.</div></div>
+      <div class="mineral-card" data-species="Poultry,Dairy,Aquaculture"><div class="el-tile"><b>Mn</b><small>MANGANESE · 25</small></div><h4>Manganese Glycinate</h4><p>Supports bone and cartilage development, reproduction and eggshell formation.</p><div class="tags"><span>Poultry</span><span>Dairy</span><span>Aquaculture</span></div><div class="detail">23% Mn by weight, uniform particle size.</div></div>
+      <div class="mineral-card" data-species="Poultry,Dairy,Aquaculture"><div class="el-tile"><b>Zn</b><small>ZINC · 30</small></div><h4>Zinc Glycinate</h4><p>Supports normal immunity, antioxidant function and skin and hoof integrity.</p><div class="tags"><span>Poultry</span><span>Dairy</span><span>Aquaculture</span></div><div class="detail">26% Zn by weight, batch-tested.</div></div>
+    </div>
+    <div class="foot-note">Mineral content shown by weight. Copper reflects our enhanced 26% grade. Confirm the current product specification for your formulation.</div>
+  </div>
+</section>
+
+<section class="band" id="science">
+  <div class="wrap band-grid">
+    <div>
+      <div class="eyebrow" style="color:#f0b880">The monoglycinate difference</div>
+      <h2>Designed with the bond in mind.</h2>
+      <p>Glycine is the smallest amino acid. Our chelation process brings it together with essential minerals to create a soluble, consistent source of trace mineral nutrition.</p>
+      <div class="formula" id="formula"><span>Mineral</span><span>+ Glycine</span><span>→ Glycinate</span></div>
+    </div>
+    <div class="stat-grid" id="statGrid">
+      <div class="stat"><b data-count="1" data-suffix=":1">0</b><span>Metal-to-glycine ratio</span></div>
+      <div class="stat"><b data-count="90" data-prefix="&gt;" data-suffix="%">0</b><span>Chelation complexation</span></div>
+      <div class="stat"><b data-static="2–7">2–7</b><span>pH stability range</span></div>
+      <div class="stat"><b data-count="1000" data-prefix="&lt;" data-suffix="μm">0</b><span>Particle size</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="inorganic">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">02 / Inorganic minerals</div><h2>The foundations of mineral nutrition.</h2><p style="margin-top:14px;">Inorganic trace minerals for feed and premix formulations, supported by controlled synthesis and batch-level quality testing.</p></div>
+      <div>
+        <div class="num-list" id="inorganicList">
+          <div class="num-item"><button class="row-btn"><div class="n">01</div><h4>Mineral sulphates</h4><span class="chev">⌄</span></button><div class="detail"><p>Conventional mineral sources for foundational feed nutrition, available across standard feed-grade concentrations.</p></div></div>
+          <div class="num-item"><button class="row-btn"><div class="n">02</div><h4>Mineral oxides</h4><span class="chev">⌄</span></button><div class="detail"><p>Inorganic mineral options for your formulation requirements, suited to cost-sensitive blends.</p></div></div>
+        </div>
+        <div class="contact-note">Contact our team for the available feed-grade minerals, concentrations and specifications.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="premix-section" id="premixes">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">03 / Mineral premixes</div><h2>Several minerals. Working together.</h2></div>
+      <p>Purposeful combinations for poultry and dairy feed. Our organic premixes bring the advantages of glycine-chelated minerals into one formulation.</p>
+    </div>
+    <div class="premix-grid" id="premixGrid">
+      <div class="premix-card" data-species="Poultry">
+        <div class="premix-photo"><img src="poultry-premix.webp" alt="Poultry Premix" style="width:100%; height:100%; object-fit:cover;" /></div>
+        <div class="premix-body"><span class="premix-tag">ORGANIC PREMIX</span><h4>Poultry Premix</h4><p>Supports immunity, growth and antioxidant function.</p><div class="data-row"><div>Mn<b>6.31%</b></div><div>Zn<b>6.31%</b></div><div>Cu<b>0.74%</b></div><div>Fe<b>1.06%</b></div></div></div>
+      </div>
+      <div class="premix-card" data-species="Poultry">
+        <div class="premix-photo"><img src="poultry-zmc.webp" alt="Poultry ZMC" style="width:100%; height:100%; object-fit:cover;" /></div>
+        <div class="premix-body"><span class="premix-tag">ORGANIC PREMIX</span><h4>Poultry ZMC</h4><p>Supports growth, bone health and eggshell quality.</p><div class="data-row"><div>Mn<b>4.20%</b></div><div>Zn<b>4.20%</b></div><div>Cu<b>0.74%</b></div></div></div>
+      </div>
+      <div class="premix-card" data-species="Dairy">
+        <div class="premix-photo"><img src="dairy-zmc.webp" alt="Dairy ZMC" style="width:100%; height:100%; object-fit:cover;" /></div>
+        <div class="premix-body"><span class="premix-tag">ORGANIC PREMIX</span><h4>Dairy ZMC</h4><p>Supports dairy nutrition and lactation performance.</p><div class="data-row"><div>Mn<b>2.44%</b></div><div>Zn<b>5.41%</b></div><div>Cu<b>2.10%</b></div></div></div>
+      </div>
+    </div>
+    <div class="more-ways">
+      <div><div class="l1">MORE WAYS TO FORMULATE</div><h4>Premixes that fit your requirements.</h4><div class="sub">ITM Poultry Premix · ITM Dairy Premix · Customized formulations</div></div>
+      <div class="links"><a href="#connect">Complete organic</a><a href="#connect">Organic + inorganic</a><a href="#connect">Complete inorganic</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="quality">
+  <div class="wrap quality-grid">
+    <div class="quality-photo">
+      <img src="laboratory.webp" alt="Quality Laboratory" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      <div class="cap">PRECISION. FROM PROCESS TO PRODUCT.</div>
+    </div>
+    <div>
+      <div class="eyebrow">The Vanita standard</div>
+      <h2>Quality is built in. Then tested.</h2>
+      <p style="font-size:15px;color:#544d43;margin:14px 0 26px;">Established in 2003, Vanita Agrochem brings manufacturing experience and analytical capability to animal feed nutrition.</p>
+      <div class="num-list" id="qualityList">
+        <div class="num-item"><button class="row-btn"><div class="n">01</div><h4>Controlled manufacturing</h4><span class="chev">⌄</span></button><div class="detail"><p>Temperature and pH control during synthesis, with drying and granulation suited to each mineral.</p></div></div>
+        <div class="num-item"><button class="row-btn"><div class="n">02</div><h4>Advanced analytical capability</h4><span class="chev">⌄</span></button><div class="detail"><p>ICP-OES for mineral content and heavy metals, supported by MP-AES, HPLC, GC and CHNS instrumentation.</p></div></div>
+        <div class="num-item"><button class="row-btn"><div class="n">03</div><h4>Every batch tested before release</h4><span class="chev">⌄</span></button><div class="detail"><p>Raw material checks and finished-product analysis support consistent product quality.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="connect">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="eyebrow">Let's connect</div>
+      <h2>Good nutrition. Starts with a conversation.</h2>
+      <p>For product specifications, premix requirements and animal feed enquiries.</p>
+    </div>
+    <div class="contact-actions">
+      <a class="row primary" href="mailto:factory@vanitaagro.com" id="emailRow">Email our team <span>↗</span></a>
+      <a class="row ghost" href="https://in.linkedin.com/company/vanita-agro-animal-feed-divison" target="_blank" rel="noopener">Follow us on LinkedIn <span>↗</span></a>
+      <button class="row ghost disabled" id="whatsappRow">WhatsApp <span class="soon">Coming soon</span></button>
+    </div>
+  </div>
+  <div class="wrap"><p class="contact-note">For now, please connect by email or LinkedIn.</p></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><b>Vanita Agro</b><small>ANIMAL FEED DIVISION</small></div>
+    <div class="addr">Vanita Agrochem (I) Private Limited<br>Gat No. 1036/1037, Takawade, Tal. Shirol<br>Kolhapur – 416121, India</div>
+    <div><a href="https://www.vanitaagro.com/" target="_blank" rel="noopener">Visit corporate website →</a><br><span style="font-size:11px;">© 2026 Vanita Agrochem (I) Private Limited · We believe in innovations.</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  // Mobile drawer
+  var hamburger=document.getElementById('hamburger'), drawer=document.getElementById('mobileDrawer');
+  hamburger.addEventListener('click',function(){
+    var open=drawer.classList.toggle('open');
+    hamburger.classList.toggle('open',open);
+    hamburger.setAttribute('aria-expanded',open);
+  });
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');});});
+
+  // Toast
+  var toastEl=document.getElementById('toast'), toastTimer;
+  function toast(msg){
+    toastEl.textContent=msg; toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){toastEl.classList.remove('show');},2200);
+  }
+  document.getElementById('whatsappRow').addEventListener('click',function(){toast('WhatsApp support is launching soon.');});
+
+  // Species filter
+  var speciesBtns=document.querySelectorAll('#speciesList button');
+  var filterHint=document.getElementById('filterHint');
+  var filterable=document.querySelectorAll('#mineralGrid .mineral-card, #premixGrid .premix-card');
+  speciesBtns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      speciesBtns.forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var species=btn.getAttribute('data-species');
+      if(species==='all'){
+        filterHint.textContent='Tap a species to filter minerals & premixes below';
+        filterable.forEach(function(c){c.classList.remove('dim');});
+      }else{
+        filterHint.textContent='Showing formulations for '+species;
+        filterable.forEach(function(c){
+          var list=(c.getAttribute('data-species')||'').split(',');
+          c.classList.toggle('dim', list.indexOf(species)===-1);
+        });
+      }
+    });
+  });
+
+  // Mineral card expand
+  document.querySelectorAll('.mineral-card').forEach(function(card){
+    card.addEventListener('click',function(){card.classList.toggle('expanded');});
+  });
+
+  // Accordion (inorganic + quality lists)
+  document.querySelectorAll('.num-item .row-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.num-item');
+      var wasOpen=item.classList.contains('open');
+      item.parentElement.querySelectorAll('.num-item').forEach(function(i){i.classList.remove('open');});
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Formula pill pulse sequence
+  var pills=document.querySelectorAll('#formula span');
+  pills.forEach(function(p){p.addEventListener('click',function(){
+    pills.forEach(function(x){x.classList.remove('pulse');});
+    p.classList.add('pulse');
+  });});
+
+  // Count-up stats on scroll into view
+  var counted=false;
+  var statGrid=document.getElementById('statGrid');
+  function easeOut(t){return 1-Math.pow(1-t,3);}
+  function animateCount(el){
+    var target=parseInt(el.getAttribute('data-count'),10);
+    var prefix=el.getAttribute('data-prefix')||'', suffix=el.getAttribute('data-suffix')||'';
+    var start=null, duration=900;
+    function step(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/duration,1);
+      el.textContent=prefix+Math.round(target*easeOut(p))+suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !counted){
+        counted=true;
+        statGrid.querySelectorAll('b[data-count]').forEach(animateCount);
+      }
+    });
+  },{threshold:.4});
+  io.observe(statGrid);
+
+  // Scroll-spy active nav link
+  var sections=['products','science','quality'].map(function(id){return document.getElementById(id);});
+  var navA=document.querySelectorAll('#navlinks a');
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id=entry.target.id;
+        navA.forEach(function(a){a.classList.toggle('active', a.getAttribute('href')==='#'+id);});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(s){ if(s) spy.observe(s); });
+})();
+</script>
+</body>
+</html>
